@@ -1,0 +1,15 @@
+#ifndef _NEON_ERROR_DEF_H_
+#define _NEON_ERROR_DEF_H_
+
+typedef enum{
+    ERR_SUCCESS = 0,
+    ERR_NOT_SUPPORTED,
+    ERR_NOT_FOUND,
+    ERR_INVALID_PARAM,
+    ERR_INVALID_STATE,
+    ERR_TIMEOUT,
+    ERR_BUSY,
+    ERR_FORBIDDEN,
+}errorCode_t;
+
+#endif //_NEON_ERROR_DEF_H_
