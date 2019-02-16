@@ -14,9 +14,7 @@ public:
     void error(char* message);
     void warning(char* message);
     void info(char* message);
-
-    void setLogLevel(logLevel_t level);
-
+    
 private:
     void send(logLevel_t level, char* levelTag, char* message);
     void printHeader(const char* messageTag);
