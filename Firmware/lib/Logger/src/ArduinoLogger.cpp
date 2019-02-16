@@ -5,6 +5,7 @@ ArduinoLogger::ArduinoLogger(Stream& port, char* moduleName, logLevel_t level)
 {
     _moduleName = moduleName;
     _logLevel = level;
+    _isEnabled = true;
 }
 
 void ArduinoLogger::printHeader(const char* messageTag)
@@ -23,7 +24,7 @@ void ArduinoLogger::printHeader(const char* messageTag)
 
 void ArduinoLogger::send(logLevel_t level, char* levelTag, char* message)
 {
-    if(_logLevel >= level)
+    if(_isEnabled && _logLevel >= level)
     {
         printHeader(levelTag);
         _arduinoPort.println(message);
@@ -48,4 +49,14 @@ void ArduinoLogger::warning(char* message)
 void ArduinoLogger::info(char* message)
 {
     send(LOGGER_LEVEL_INFO, "INFO", message);
+}
+
+void ArduinoLogger::enable()
+{
+    _isEnabled = true;
+}
+
+void ArduinoLogger::disable()
+{
+    _isEnabled = false;
 }

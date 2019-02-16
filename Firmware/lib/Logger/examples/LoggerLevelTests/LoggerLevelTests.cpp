@@ -40,5 +40,14 @@ void loop() {
   logger.setLogLevel(Logger::LOGGER_LEVEL_CRITICAL);
   callAllLogs();
 
+  DEBUG_SERIAL.println("\nStarting disable test. No log messages should appear");
+  logger.setLogLevel(Logger::LOGGER_LEVEL_INFO);
+  logger.disable();
+  callAllLogs();
+
+  DEBUG_SERIAL.println("\nStarting enable test. All log levels should appear");
+  logger.enable();
+  callAllLogs();
+
   delay(1000);
 }

@@ -14,6 +14,9 @@ public:
     void error(char* message);
     void warning(char* message);
     void info(char* message);
+
+    void enable();
+    void disable();
     
 private:
     void send(logLevel_t level, char* levelTag, char* message);
