@@ -10,6 +10,7 @@ typedef enum{
     ERR_TIMEOUT,
     ERR_BUSY,
     ERR_FORBIDDEN,
+    ERR_NULL_POINTER
 }errorCode_t;
 
 #endif //_NEON_ERROR_DEF_H_
