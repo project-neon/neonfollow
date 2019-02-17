@@ -13,6 +13,7 @@ class MotorEncoder
         // tranquilamente. Só lembrar de adicionar o código no .cpp
         typedef enum
         {
+            ENCODE_TYPE_X1,
             ENCODE_TYPE_X2,
             ENCODE_TYPE_X4,
             ENCODE_TYPE__EOF // EOF = End Of File, só pra gente saber que esse é o último. 
@@ -32,7 +33,7 @@ class MotorEncoder
         // Olha lá no private que faço isso pra logger.
 
         // Funções de configuração
-        virtual errorCode_t setup(uint16_t* pins) = 0;
+        virtual errorCode_t setup(uint16_t* pins, uint8_t pinCount) = 0;
 
         // Como essas funções só setam/retornam valores de variáveis da classe,
         // já podemos economizar e definir o comportamento aqui. 
@@ -67,6 +68,7 @@ class MotorEncoder
         // dessas funções.
         errorCode_t reset()
         {
+            _logger.info("reset");
             _pulseCount = 0;
             return ERR_SUCCESS;
         }
@@ -95,6 +97,7 @@ class MotorEncoder
     protected:
         void _pulse()
         {
+            _logger.info("pulse increment");
             _pulseCount++;
         }
 

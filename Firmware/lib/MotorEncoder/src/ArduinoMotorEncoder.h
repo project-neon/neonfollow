@@ -15,19 +15,20 @@ class ArduinoMotorEncoder : public MotorEncoder
         ArduinoMotorEncoder(Logger& logger);
 
         // Funções que estão definidas como virtual na interface MotorEncoder
-        errorCode_t setup(uint16_t* pins);
+        errorCode_t setup(uint16_t* pins, uint8_t pinCount);
 
         // Funções de operação
         float getRevolutions();
 
         uint32_t getRevolutionsCount();
 
-        // Fazendo o código percebi que há a necessidade de configurar o tipo de interrupção.
+        // Fazendo o código percebi que há a necessidade de configurar as interrupções.
         // To fazendo isso de acordo com o Arduino, então coloquei uma função adicional nessa classe.
-        errorCode_t setInterruptMode(uint32_t mode);
+        void configureInterruptMode();
 
-        private:
-            uint16_t _pin; // sabemos que o encoder pro arduino vai ficar num pino de interrupção.
+        public:
+            uint16_t _chApin; // sabemos que o encoder pro arduino vai ficar num pino de interrupção.
+            uint16_t _chBpin; // sabemos que o encoder pro arduino vai ficar num pino de interrupção.
             
             void _pulseCallback(); // função que chamamos quando sabemos que teve um pulso. 
                                    // A forma como isso opera depende da plataforma, por isso fica aqui no arquivo pro arduino
