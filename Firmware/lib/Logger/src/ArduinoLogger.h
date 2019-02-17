@@ -15,6 +15,11 @@ public:
     void warning(const char* message);
     void info(const char* message);
 
+    void critical(String message);
+    void error(String message);
+    void warning(String message);
+    void info(String message);
+
     void enable();
     void disable();
     

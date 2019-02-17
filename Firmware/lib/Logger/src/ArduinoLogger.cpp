@@ -60,3 +60,23 @@ void ArduinoLogger::disable()
 {
     _isEnabled = false;
 }
+
+void ArduinoLogger::critical(String message)
+{
+    critical(message.c_str());
+}
+
+void ArduinoLogger::error(String message)
+{
+    error(message.c_str());
+}
+
+void ArduinoLogger::warning(String message)
+{
+    warning(message.c_str());
+}
+
+void ArduinoLogger::info(String message)
+{
+    info(message.c_str());
+}
