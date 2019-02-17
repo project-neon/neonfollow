@@ -26,15 +26,15 @@ class MotorDriver{
 
         MotorDriver(Logger& logger, MotorDriverConfig_t config) : _logger(logger){};
 
-        virtual void init(MotorDriverConfig_t config) = 0;
+        virtual void init() = 0;
 
         virtual errorCode_t setFrequency(uint32_t frequencyHz) = 0;
 
         virtual errorCode_t setPower(uint16_t power) = 0;
 
-        virtual errorCode_t setDirection(Direction_t direction) = 0;
+        virtual errorCode_t setPower(uint16_t power, Direction_t direction) = 0;
 
-        virtual errorCode_t setConfig(MotorDriverConfig_t config) = 0;
+        virtual errorCode_t setDirection(Direction_t direction) = 0;
 
         virtual errorCode_t setAngle(uint16_t angle);
         
@@ -60,6 +60,7 @@ class MotorDriver{
 
     protected:
         MotorDriverConfig_t _config;
+        Logger& _logger;
 };
 
 #endif // _MOTOR_DRIVER_H_
