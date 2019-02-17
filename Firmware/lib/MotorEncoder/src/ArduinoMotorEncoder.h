@@ -26,7 +26,7 @@ class ArduinoMotorEncoder : public MotorEncoder
         // To fazendo isso de acordo com o Arduino, então coloquei uma função adicional nessa classe.
         void configureInterruptMode();
 
-        public:
+        private:
             uint16_t _chApin; // sabemos que o encoder pro arduino vai ficar num pino de interrupção.
             uint16_t _chBpin; // sabemos que o encoder pro arduino vai ficar num pino de interrupção.
             
