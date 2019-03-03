@@ -1,7 +1,7 @@
 #ifndef _NEON_ARDUINO_LOGGER_H_
 #define _NEON_ARDUINO_LOGGER_H_
 
-#include "Arduino.h"
+#include <Arduino.h>
 #include "Logger.h"
 
 class ArduinoLogger : public Logger

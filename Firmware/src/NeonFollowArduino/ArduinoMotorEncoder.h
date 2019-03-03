@@ -4,6 +4,13 @@
 #include <Arduino.h>
 #include <MotorEncoder.h>
 
+#ifndef voidArgumentFuncPtr
+typedef void (*voidFuncPtr)(void);
+typedef void (*voidArgumentFuncPtr)(void *);
+
+#endif
+
+
 class ArduinoMotorEncoder : public MotorEncoder
 {
     public:

@@ -1,0 +1,69 @@
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\cores\maple
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\system\libmaple
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\system\libmaple\include
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\system\libmaple\stm32f1\include
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\system\libmaple\usb\stm32f1
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\system\libmaple\usb\usb_lib
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\variants\maple_mini
+-IE:\Documentos\Projetos\neonfollow\Firmware\lib\Logger\src
+-IE:\Documentos\Projetos\neonfollow\Firmware\lib\MotorEncoder\src
+-IE:\Documentos\Projetos\neonfollow\Firmware\lib\error
+-IE:\Documentos\Projetos\neonfollow\Firmware\lib\ArduinoThread
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\A_STM32_Examples
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\Adafruit_GFX_AS
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\Adafruit_ILI9341
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\Adafruit_ILI9341_STM
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\Adafruit_SSD1306
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\EEPROM
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\Ethernet_STM\src
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\FreeRTOS701
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\FreeRTOS701\utility
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\FreeRTOS821
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\FreeRTOS821\utility
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\FreeRTOS900
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\Lcd7920_STM
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\LiquidCrystal
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\MapleCoOS
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\MapleCoOS\utility
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\MapleCoOS116
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\MapleCoOS116\utility
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\OLED_I2C
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\OneWireSTM\src
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\RTClock\src
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\SDIO
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\SPI\src
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\STM32ADC\src
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\Serasidis_EtherCard_STM\src
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\Serasidis_VS1003B_STM\src
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\Serasidis_XPT2046_touch\src
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\Servo\src
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\Touch-Screen-Library_STM
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\USBComposite
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\WS2812B\src
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\Wire
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\Wire\utility
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\WireSlave\src
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\framework-arduinoststm32\STM32F1\libraries\stm_fft
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\toolchain-gccarmnoneeabi\arm-none-eabi\include
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\toolchain-gccarmnoneeabi\arm-none-eabi\include\c++\8.2.1
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\toolchain-gccarmnoneeabi\arm-none-eabi\include\c++\8.2.1\arm-none-eabi
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\toolchain-gccarmnoneeabi\lib\gcc\arm-none-eabi\8.2.1\include
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\toolchain-gccarmnoneeabi\lib\gcc\arm-none-eabi\8.2.1\include-fixed
+-IC:\Users\Gustavo S. de Paula\.platformio\packages\tool-unity
+-IE:\Documentos\Projetos\neonfollow\Firmware\include
+-IE:\Documentos\Projetos\neonfollow\Firmware\src
+-DPLATFORMIO=30604
+-DSTM32F103xB
+-DSERIAL_USB
+-DDEBUG_LEVEL=DEBUG_NONE
+-DBOARD_maple_mini
+-DVECT_TAB_ADDR=134225920
+-DERROR_LED_PORT=GPIOB
+-DERROR_LED_PIN=1
+-DARDUINO=10610
+-DARDUINO_maple_mini
+-DARDUINO_ARCH_STM32F1
+-D__STM32F1__
+-DMCU_STM32F103CB
+-DF_CPU=72000000L
+-DSTM32F1
