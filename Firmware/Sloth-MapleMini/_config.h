@@ -11,7 +11,7 @@
 //
 #define PROJECT_NAME            "Sloth Firmware"
 #define PROJECT_BOARD           "Maple Mini"
-#define PROJECT_VERSION         "v0.8"
+#define PROJECT_VERSION         "v0.75"
 
 //
 // Serial DEBUG
