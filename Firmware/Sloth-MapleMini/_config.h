@@ -17,9 +17,10 @@
 // Serial DEBUG
 //
 #define LOG_ENABLED true
-#define LOG if(LOG_ENABLED) PC
-#define BT Serial3
-#define PC	Serial
+#define LOG if(LOG_ENABLED) BT
+
+#define BT  Serial3
+#define PC  Serial
 #define PC_SPEED  115200
 #define LOG_INTERVAL  10 //
 
@@ -67,9 +68,9 @@
 //
 // General Settings
 //
-#define STOP_BY_TIME true
+#define STOP_BY_TIME false
 #define LAP_TIME 500 //in seconds
-#define STOP_BY_DISTANCE true
+#define STOP_BY_DISTANCE false
 #define FINAL_TARGET_POSITION   13.50  // in meters
 // #define FINAL_TARGET_POSITION   1.0
 #define ACCELERATION_ENABLED true

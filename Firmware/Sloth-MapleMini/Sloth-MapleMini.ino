@@ -6,7 +6,7 @@
 #include "QTRSensors.h"
 #include "tracks.h"
 
-byte rcvd = 0;
+char rcvd = 0;
 
 Motor LeftMotor(PIN_M1_PWM, PIN_M1_IN1, PIN_M1_IN2);
 Motor RightMotor(PIN_M2_PWM, PIN_M2_IN1, PIN_M2_IN2);
@@ -459,50 +459,60 @@ void manualTrackMapping()
   // LOG.print(",");
   // LOG.print(rightDistance);
 }
-
+bool SENDUPDATE = false;
 void btcallback()
 {
-  rcvd = 0;
-  if (BT.available() > 0)
-  {
+  rcvd = '0';
+  // if (BT.available() > 0)
+  // {
     rcvd = (char)BT.read();
-  }
-  // BT.println("TEST BT - CALLBACK");
+  // BT.print(rcvd);
+  // BT.print('\t');
+  // }
+  // BT.println("TEST BT - CALLBACK");  
   switch (rcvd)
   {
-  case 'A':
+  case 'p': //70
     kpdir += 0.5 / 3;
+    if(SENDUPDATE)sendUpdateSpeed();
     break;
-  case 'B':
+  case 'q': //71
     kpdir -= 0.5 / 3;
+    if(SENDUPDATE)sendUpdateSpeed();
     break;
   case 'C':
     kidir += 0.05 / 3;
+    if(SENDUPDATE)sendUpdateSpeed();
     break;
-  case 'D':
+  case 'Z':
     kidir -= 0.05 / 3;
+    if(SENDUPDATE)sendUpdateSpeed();
     break;
-  case 'E':
+  case 'd': //64
     kddir += 0.05 / 3;
+    if(SENDUPDATE)sendUpdateSpeed();
     break;
-  case 'F':
+  case 'e': //65
     kddir -= 0.05 / 3;
+    if(SENDUPDATE)sendUpdateSpeed();
     break;
-  case 'u':
+  case 'U': //55
     speedbase += 5.0 / 3;
     acceleration = acceleration > 0 ? acceleration : -acceleration;
+    if(SENDUPDATE)sendUpdateSpeed();
     break;
-  case 'd':
+  case 'D': //44
     speedbase -= 5.0 / 3;
     acceleration = acceleration > 0 ? -acceleration : acceleration;
+    if(SENDUPDATE)sendUpdateSpeed();
     break;
-  case 'G':
+  case 'G':  //47
     robotstate = true;
     robotplay = true;
     LeftEncoder.reset();
     RightEncoder.reset();
     break;
-  case 'S':
+  case 'S': //53
     robotstate = false;
     // robotstate = true;
     LOG.println("Robot Paused");
@@ -513,25 +523,32 @@ void btcallback()
     LOG.println("Motors state changed");
     break;
   }
-  Normal = {speedbase, kpdir, kidir, kddir};
-  // BT.print("speed: "); BT.print(speedbase); BT.print("\t ");
-  // BT.print("kp: "); BT.print(kpdir); BT.print("\t ");
-  // BT.print("kd: "); BT.print(kddir); BT.print("\t ");
-  // BT.print("ki: "); BT.print(kidir); BT.print("\t ");
-  BT.println();
-  setupPID(Normal);
+  // if(rcvd != '0'){
+    // BT.print(rcvd);
+    // BT.println('\t');
+    sendUpdateSpeed();
+  // }
+     
 }
-
+ void sendUpdateSpeed(){
+   Normal = {speedbase, kpdir, kidir, kddir};
+    BT.print("speed: "); BT.print(speedbase);BT.print("\t ");
+    BT.print("kp: "); BT.print(kpdir); BT.print("\t ");
+    BT.print("kd: ");BT.print(kddir);BT.print("\t ");
+    BT.println();
+    setupPID(Normal);
+ }
 void setup()
 {
   delay(1000);
-  PC.begin(PC_SPEED);
-  BT.begin(BT_SPEED);
-  LOG.println(PROJECT_NAME);
+  // BT.begin(BT_SPEED);
+  // PC.begin(PC_SPEED);
+  LOG.begin(PC_SPEED);
+  LOG.print(PROJECT_NAME);
   LOG.println(PROJECT_BOARD);
   LOG.println(PROJECT_VERSION);
   pinMode(PIN_LED, OUTPUT);
-  attachInterrupt(digitalPinToInterrupt(BTRX), btcallback,RISING);
+  // attachInterrupt(digitalPinToInterrupt(BTRX), btcallback,RISING); DONT USE
   // setupLineReader();
   setupLeftEncoder();
   setupRightEncoder();
@@ -736,7 +753,8 @@ void followLine()
       // LOG.printf("%.4f,", currentPosition);
       // LOG.printf("%.4f", DIF(leftDistance, rightDistance));
 
-      manualTrackMapping();
+      // manualTrackMapping();
+      
       // testEncoder(false);
       // testLineSensor();
       // testMotor();

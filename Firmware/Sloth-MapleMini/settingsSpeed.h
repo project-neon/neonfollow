@@ -4,8 +4,8 @@
 #ifndef SETTINGSSPEED_H
 #define SETTINGSSPEED_H
 
-float speedbase = 40;
-float kpdir = 0.5;
+float speedbase = 30;
+float kpdir = 1.0;
 float kidir = 0.0;
 float kddir = 0.10;
 
