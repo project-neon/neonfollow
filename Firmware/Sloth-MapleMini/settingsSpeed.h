@@ -4,8 +4,8 @@
 #ifndef SETTINGSSPEED_H
 #define SETTINGSSPEED_H
 
-float speedbase = 40;
-float kpdir = 2.0;
+float speedbase = 25;
+float kpdir = 1.0;
 float kidir = 0.0;
 float kddir = 0.35;
 
@@ -16,7 +16,7 @@ Setup Normal     = {speedbase, kpdir, kidir, kddir};
 Setup PD0[] {
   // Target Speed, kp, ki, kd
   {30, 2.70, 0.0, 0.21}, // Slow Curve
-  {40, 2.0, 0.0, 0.35}, // Curve
+  {40, 1.2, 0.0, 0.35}, // Curve
   {70, 1.65, 0.0, 0.35}, // FastCurve
   {100, 1.5, 0.0, 0.41}, // Straight
   // {90, 15.0, 0.0, 4.0}, // Straight

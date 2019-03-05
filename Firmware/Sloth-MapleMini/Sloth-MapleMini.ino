@@ -404,14 +404,6 @@ void testMarkProtocol()
 
 void manualTrackMapping()
 {
-  // Manual Track Mapping
-  // LOG.printf("%.2f,", LapTimer.read());
-  // LOG.printf("%i,", currentMark);
-  // LOG.printf("%i", linePosition);
-
-  // LOG.printf("%.4f,", currentPosition);
-  // LOG.printf("%.4f", DIF(leftDistance, rightDistance));
-  // manualTrackMapping();
   // START
   // Checkpoint sensors mapping
   // Crossroad
@@ -451,8 +443,12 @@ void manualTrackMapping()
   }
   else
   {
-    // LOG.print("-,-,");
+    LOG.print("-,-,");
+    LOG.print(leftDistance);
+    LOG.print(",");
+    LOG.println(rightDistance);
   }
+  
   // Encoders positions
 
   // LOG.print(leftDistance);
@@ -753,8 +749,8 @@ void followLine()
       // LOG.printf("%.4f,", currentPosition);
       // LOG.printf("%.4f", DIF(leftDistance, rightDistance));
 
-      // manualTrackMapping();
-      
+      manualTrackMapping();
+
       // testEncoder(false);
       // testLineSensor();
       // testMotor();

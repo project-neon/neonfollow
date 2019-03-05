@@ -22,7 +22,7 @@
 #define BT  Serial3
 #define PC  Serial
 #define PC_SPEED  115200
-#define LOG_INTERVAL  10 //
+#define LOG_INTERVAL  100 //ms
 
 //
 // Bluetooth Configs (Type here)
