@@ -598,14 +598,15 @@ void followLine()
 
     leftDistance = PULSES2DISTANCE(LeftEncoder.getPulses());
     rightDistance = PULSES2DISTANCE(RightEncoder.getPulses());
-    // currentPosition = AVG(leftDistance, rightDistance) + POSITION_FIX; //get average
-    currentPosition = rightDistance + POSITION_FIX; //get average
+    
+    currentPosition = AVG(leftDistance, rightDistance) + POSITION_FIX; //get average
 
     // Check if the robot complete the track
     if (currentPosition >= FINAL_TARGET_POSITION && STOP_BY_DISTANCE)
     {
       robotstate = false; // Stop the Robot
     }
+    
 
     // Checks if medium lap time has been reached
     nowLapTimer = millis() / 1000.0;

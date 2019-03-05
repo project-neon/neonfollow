@@ -6,6 +6,28 @@
 /*
   This file contains the tracks that the robot has already done.
 */
+
+//Neonfollow
+Mark HACKPULICA_RETAS[] = {
+    // Distance in meters, Aceleration, Constants of gain (PID)
+    {1.3 + OFFSET_ACELERATION, ACCELERATION_UP, GAIN_NUMBER[Straight]},
+    {1.6 + OFFSET_DESACELERATION, ACCELERATION_DOWN, GAIN_NUMBER[SlowCurve]},
+    {3.1 + OFFSET_ACELERATION, ACCELERATION_UP, GAIN_NUMBER[Straight]},
+    {3.5 + OFFSET_DESACELERATION, ACCELERATION_DOWN, GAIN_NUMBER[SlowCurve]},
+    {5.0 + OFFSET_ACELERATION, ACCELERATION_UP, GAIN_NUMBER[Straight]},
+    {5.4 + OFFSET_DESACELERATION, ACCELERATION_DOWN, GAIN_NUMBER[SlowCurve]},
+    {6.8 + OFFSET_ACELERATION, ACCELERATION_UP, GAIN_NUMBER[Straight]},
+    {7.2 + OFFSET_DESACELERATION, ACCELERATION_DOWN, GAIN_NUMBER[SlowCurve]},
+    {8.7 + OFFSET_ACELERATION, ACCELERATION_UP, GAIN_NUMBER[Straight]},
+    {9.08 + OFFSET_DESACELERATION, ACCELERATION_DOWN, GAIN_NUMBER[SlowCurve]},
+    {10.55 + OFFSET_ACELERATION, ACCELERATION_UP, GAIN_NUMBER[Straight]},
+    {10.9 + OFFSET_DESACELERATION, ACCELERATION_DOWN, GAIN_NUMBER[SlowCurve]},
+    {11.6 + OFFSET_ACELERATION, ACCELERATION_UP, GAIN_NUMBER[Straight]},
+    {FINAL_TARGET_POSITION, ACCELERATION_UP, GAIN_NUMBER[Straight]}
+    // {FINAL_TARGET_POSITION, -1.0, Stop} // 21 End Track
+};
+
+//2018
 Mark TECH_CHALLENGE[] = { // Distance in meters, Aceleration, Constants of gain (PID)
   {00.30-OFFSET_ACELERATION, ACCELERATION_UP, GAIN_NUMBER[Curve]},   // 1 - 00.30
   {00.55+OFFSET_DESACELERATION, ACCELERATION_DOWN, GAIN_NUMBER[Curve]},      // 2 - 00.70
@@ -31,7 +53,7 @@ Mark TECH_CHALLENGE[] = { // Distance in meters, Aceleration, Constants of gain 
   // {FINAL_TARGET_POSITION, -1.0, Stop} // 21 End Track
 };
 
-Mark HACKPULICA_RETAS[] = { // Distance in meters, Aceleration, Constants of gain (PID)
+Mark HACKPULICA_RETAS_OLD[] = { // Distance in meters, Aceleration, Constants of gain (PID)
   {2.3, +5.0, GAIN_NUMBER[Straight]},
   {3.4, -2, GAIN_NUMBER[SlowCurve]},
   {6.1, +5.0, GAIN_NUMBER[Straight]},

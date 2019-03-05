@@ -68,17 +68,18 @@
 //
 // General Settings
 //
-#define STOP_BY_TIME false
-#define LAP_TIME 500 //in seconds
-#define STOP_BY_DISTANCE false
-#define FINAL_TARGET_POSITION   13.50  // in meters
+#define STOP_BY_TIME true
+#define LAP_TIME 360 //in seconds
+#define STOP_BY_DISTANCE true
+#define FINAL_TARGET_POSITION   11.70  // in meters
 // #define FINAL_TARGET_POSITION   1.0
 #define ACCELERATION_ENABLED true
 #define ACCELERATION_INTERVAL 0.01
-#define MAPPING_ENABLED false
+#define MAPPING_ENABLED true
 #define FIRST_MARK_POSITION 0.5
-#define OFFSET_ACELERATION 0.30
-#define OFFSET_DESACELERATION 0.0
+
+#define OFFSET_ACELERATION -0.10     //always -
+#define OFFSET_DESACELERATION 0.05   //always +
 #define ACCELERATION_UP   5.00
 #define ACCELERATION_DOWN -10.00
 
@@ -124,7 +125,7 @@
 #define Straight  3
 #define Stop      4
 
-#define TRACK_EVENT_NAME HACKPULICA_NORMAL_NEW
+#define TRACK_EVENT_NAME HACKPULICA_RETAS
 #define GAIN_NUMBER PD0
 
 #endif
