@@ -13,6 +13,14 @@ float kddir = 0.35;
 
 Setup Normal     = {speedbase, kpdir, kidir, kddir};
 
+Setup PD1[]{
+    // Target Speed, kp, ki, kd    
+    {25, 1.0, 0.0, 0.35},  // Slow Curve
+    {40, 1.0, 0.0, 0.35},  // Curve
+    {70, 1.65, 0.0, 0.35}, // FastCurve    
+    {50, 1.20, 0.0, 0.8}, // Straight                         
+};
+
 Setup PD0[]{
     // Target Speed, kp, ki, kd
     // {30, 2.70, 0.0, 0.21}, // Slow Curve

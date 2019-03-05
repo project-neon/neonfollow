@@ -78,7 +78,7 @@
 #define MAPPING_ENABLED true
 #define FIRST_MARK_POSITION 0.5
 
-#define OFFSET_ACELERATION -0.10     //always -
+#define OFFSET_ACELERATION -0.40     //always -
 #define OFFSET_DESACELERATION 0.05   //always +
 #define ACCELERATION_UP   5.00
 #define ACCELERATION_DOWN -10.00
@@ -126,6 +126,6 @@
 #define Stop      4
 
 #define TRACK_EVENT_NAME HACKPULICA_RETAS
-#define GAIN_NUMBER PD0
+#define GAIN_NUMBER PD1
 
 #endif
