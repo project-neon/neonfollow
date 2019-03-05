@@ -4,25 +4,27 @@
 #ifndef SETTINGSSPEED_H
 #define SETTINGSSPEED_H
 
-float speedbase = 30;
-float kpdir = 1.0;
+float speedbase = 40;
+float kpdir = 2.0;
 float kidir = 0.0;
-float kddir = 0.10;
+float kddir = 0.35;
 
-#define CONSTANTE 100
+#define CONSTANTE 100 //This chance the PID constantes to a visible values
 
 Setup Normal     = {speedbase, kpdir, kidir, kddir};
 
 Setup PD0[] {
   // Target Speed, kp, ki, kd
-  {30, 27.0, 0.0, 2.1}, // Slow Curve
-  {40, 20.0, 0.0, 3.5}, // Curve
-  {70, 16.5, 0.0, 3.5}, // FastCurve
-  {100, 15.0, 0.0, 4.1}, // Straight
+  {30, 2.70, 0.0, 0.21}, // Slow Curve
+  {40, 2.0, 0.0, 0.35}, // Curve
+  {70, 1.65, 0.0, 0.35}, // FastCurve
+  {100, 1.5, 0.0, 0.41}, // Straight
   // {90, 15.0, 0.0, 4.0}, // Straight
   // {0.10, 0.00010, 0.000000, 0.0000010}  // Stop
 };
 
+
+// OLD SLoth (bigger)
 
 Setup k0[] {
   // Target Speed, kp, ki, kd
