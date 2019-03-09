@@ -22,7 +22,7 @@
 #define BT  Serial3
 #define PC  Serial
 #define PC_SPEED  115200
-#define LOG_INTERVAL  100 //ms
+#define LOG_INTERVAL  10 //ms
 
 //
 // Bluetooth Configs (Type here)
@@ -55,15 +55,23 @@
 #define STRAIGHT_FIX  100
 
 //
-// Line Reader Settings
+// VBat Reader
 //
-#define BAT_SENSE_PIN 3   // AIN8
+#define PIN_BAT_SENSE 3 // AIN8
+#define BAT_R1 22000
+#define BAT_R2 10000
+#define BAT_DROP 0.04
+#define VBAT_VOLTAGE(adc) (adc / (4096 / 3.3)) * (BAT_R1 + BAT_R2) * (1.0 / BAT_R2) + BAT_DROP
+
+#define VBAT_ALARMED 6.90
+#define VBAT_WARNED 7.10
+#define VBAT_USB 5.10
 //
 //Lap Sensor Settings
 //
 #define CROSS_COUNTER 6
-#define PIN_TRACK_MARKING_LEFT  15
-#define PIN_TRACK_MARKING_RIGHT 16
+#define PIN_TRACK_MARKING_LEFT  15 //15
+#define PIN_TRACK_MARKING_RIGHT 17  //16
 
 //
 // General Settings
@@ -71,17 +79,17 @@
 #define STOP_BY_TIME true
 #define LAP_TIME 360 //in seconds
 #define STOP_BY_DISTANCE true
-#define FINAL_TARGET_POSITION   11.70  // in meters
+#define FINAL_TARGET_POSITION   21.20  // in meters
 // #define FINAL_TARGET_POSITION   1.0
 #define ACCELERATION_ENABLED true
 #define ACCELERATION_INTERVAL 0.01
 #define MAPPING_ENABLED true
 #define FIRST_MARK_POSITION 0.5
 
-#define OFFSET_ACELERATION -0.40     //always -
-#define OFFSET_DESACELERATION 0.05   //always +
-#define ACCELERATION_UP   5.00
-#define ACCELERATION_DOWN -10.00
+#define OFFSET_ACCELERATION -0.13     //always -
+#define OFFSET_DESACCELERATION +0.5   //always +
+#define ACCELERATION_UP   3.00
+#define ACCELERATION_DOWN -25.00
 
 //
 //Marking Settings
@@ -115,6 +123,8 @@
 #define PULSES2DISTANCE(p) (p / PULSES_PER_REV * WHEEL_PERIMETER)
 #define AVG(l,r) ((l + r) / 2.0)
 #define DIF(l,r) (r - l)
+#define CONST_DISTANCE  0.83
+#define SAFE_DISTANCE   0.00
 //
 // Pulses to Distance
 //
@@ -125,7 +135,7 @@
 #define Straight  3
 #define Stop      4
 
-#define TRACK_EVENT_NAME HACKPULICA_RETAS
-#define GAIN_NUMBER PD1
+#define TRACK_EVENT_NAME IRON_CUP_2019
+#define GAIN_NUMBER PD_IRON
 
 #endif

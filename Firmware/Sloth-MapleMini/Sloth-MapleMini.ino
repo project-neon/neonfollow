@@ -14,7 +14,7 @@ float leftmotorspeed = 0;
 float righmotorspeed = 0;
 float currentSpeed = 0;
 float targetSpeed = 0;
-float acceleration = 5;
+float acceleration = ACCELERATION_UP;
 bool MOTORS_ENABLE = true;
 
 QEI LeftEncoder(PIN_ENC1_A, PIN_ENC1_B, PULSES_PER_REV, WHEEL_RADIUS);
@@ -25,22 +25,66 @@ float rightDistance;   // right distance by encoder (m)
 bool firstMarkDone = false;
 
 unsigned char pinsLineReader[NUM_SENSORS] = {
-    // PIN_LR_S1,
-    // PIN_LR_S2,
-    // PIN_LR_S3,
-    // PIN_LR_S4,
-    // PIN_LR_S5,
-    // PIN_LR_S6,
-    // PIN_LR_S7,
-    // PIN_LR_S8
-    PIN_LR_S8,
-    PIN_LR_S7,
-    PIN_LR_S6,
-    PIN_LR_S5,
-    PIN_LR_S4,
-    PIN_LR_S3,
+    PIN_LR_S1,
     PIN_LR_S2,
-    PIN_LR_S1};
+    PIN_LR_S3,
+    PIN_LR_S4,
+    PIN_LR_S5,
+    PIN_LR_S6,
+    PIN_LR_S7,
+    PIN_LR_S8
+    
+    // PIN_LR_S8,
+    // PIN_LR_S7,
+    // PIN_LR_S6,
+    // PIN_LR_S5,
+    // PIN_LR_S4,
+    // PIN_LR_S3,
+    // PIN_LR_S2,
+    // PIN_LR_S1
+    
+    };
+
+unsigned int leftMarker[] = {
+0,
+1,
+//2,
+//3,
+//4,
+//5,
+//6,
+//7,
+//8,
+9,
+10,
+11,
+12,
+13,
+14,
+15,
+16,
+17,
+18,
+19,
+//20,
+//21,
+22,
+23,
+24,
+25,
+//26,
+//27,
+//28,
+//29,
+30,
+31,
+//32,
+//33,
+34,
+35,
+36
+
+};
 
 unsigned int sensorValues[NUM_SENSORS];
 
@@ -71,6 +115,7 @@ Mark TargetMark;
 int currentMark = 0;
 
 // Timers
+float laptime;
 float startLogTimer;            // Debug the loop
 float startLapTimer;            // Time of a lap
 float startAccTimer;            // Acceleration interval
@@ -83,12 +128,15 @@ float nowAccTimer;            // Acceleration interval
 float nowCps_left_led_timer;  // Acceleration interval
 float nowCps_right_led_timer; // Acceleration interval
 
+float startMarkerTimer;
+float nowMarkerTimer;
+
 // Interrupt when Mark Left was change
 void checkpointSensorLeftCallback()
 {
   checkpoint_left_counter++;
   // cps_left_led_timer.start();
-  digitalWrite(PIN_LED, 1);
+  // digitalWrite(PIN_LED, 1);
 }
 
 //Interrupt when Mark Right was change
@@ -96,7 +144,7 @@ void checkpointSensorRightCallback()
 {
   checkpoint_right_counter++;
   // cps_right_led_timer.start();
-  digitalWrite(PIN_LED, 1);
+  // digitalWrite(PIN_LED, 1);
 }
 
 void setupPID(Setup setup)
@@ -122,6 +170,7 @@ void setupRobot()
   RightMotor.coast();
 
   // Calibrate the line sensor
+    
   setupLineReader();
 
   // Reset Encoders
@@ -310,6 +359,7 @@ void testEncoder(bool AUTO_ENCODER)
 //Line Sensor
 void setupLineReader()
 {
+  digitalWrite(PIN_LED, 0);
   delay(1000);
   LOG.print("Calibrating sensors...");
   digitalWrite(PIN_LED, 1);
@@ -544,6 +594,28 @@ void setup()
   LOG.println(PROJECT_BOARD);
   LOG.println(PROJECT_VERSION);
   pinMode(PIN_LED, OUTPUT);
+  delay(500);
+  long reading = analogRead(PIN_BAT_SENSE);
+  float vbat = VBAT_VOLTAGE(reading);
+  
+  if (vbat < VBAT_ALARMED){
+    LOG.print("Low Battery: ");    
+    LOG.print(vbat);
+    for (int i = 0; i < 25; i++){
+      digitalWrite(PIN_LED, !digitalRead(PIN_LED));
+      delay(100);
+    }
+  }
+  else if (vbat < VBAT_WARNED){
+    for(int i = 0; i < 5; i++)
+    {
+      digitalWrite(PIN_LED, !digitalRead(PIN_LED));
+      delay(500);
+    }
+  }
+  digitalWrite(PIN_LED, 0);
+  // LOG.print(VBAT_VOLTAGE(reading));
+  // LOG.print("\t");
   // attachInterrupt(digitalPinToInterrupt(BTRX), btcallback,RISING); DONT USE
   // setupLineReader();
   setupLeftEncoder();
@@ -590,11 +662,23 @@ void followLine()
       LOG.println("Robot will Start in 2s");
       delay(2000);
     }
+    
     if (checkpoint_right_counter == 0)
     {
       LeftEncoder.reset();
       RightEncoder.reset();
+      startLapTimer = millis() / 1000.0;    // Time of a lap
+      startMarkerTimer = millis() / 1000.0; 
     }
+
+    // if(checkpoint_right_counter > 0 && currentPosition >= FINAL_TARGET_POSITION - SAFE_DISTANCE){
+    //   nowLapTimer = millis() / 1000.0;
+    // }
+
+    // if (currentPosition >= FINAL_TARGET_POSITION - SAFE_DISTANCE && STOP_BY_DISTANCE)
+    // {
+    //   checkpoint_right_counter = 0; // Set right counter to zero
+    // }
 
     leftDistance = PULSES2DISTANCE(LeftEncoder.getPulses());
     rightDistance = PULSES2DISTANCE(RightEncoder.getPulses());
@@ -610,8 +694,8 @@ void followLine()
 
     // Checks if medium lap time has been reached
     nowLapTimer = millis() / 1000.0;
-    float laptime;
-    if (nowLapTimer - startLapTimer > LAP_TIME && STOP_BY_TIME)
+    laptime = nowLapTimer - startLapTimer;    
+    if (laptime > LAP_TIME && STOP_BY_TIME)
     {
       // startLapTimer = nowLapTimer;
       robotstate = false; // Stop the robot
@@ -627,14 +711,14 @@ void followLine()
       RightMotor.coast();
 
       // Print some data for statistics
-      float laptime = nowLapTimer - startLapTimer;
+      laptime = nowLapTimer - startLapTimer;
       float mediumspeed = currentPosition / laptime;
       LOG.print("Time Lap: \t");
       LOG.print(laptime);
       LOG.print("s");
       LOG.print("\t");
       LOG.print("Track Length: \t ");
-      LOG.print(currentPosition);
+      LOG.print(currentPosition * CONST_DISTANCE);
       LOG.print("m");
       LOG.print("\t");
       LOG.print("Medium Speed: \t ");
@@ -673,25 +757,34 @@ void followLine()
 
       // Check if changed mark
       if (currentPosition >= TargetMark.position && MAPPING_ENABLED)
-      {
+      {    
         LOG.print(currentPosition);
         LOG.print(": ");
-        LOG.print(currentMark);
+        LOG.print(leftMarker[currentMark]);
         LOG.print("--> ");
         currentMark++;
-        LOG.print(currentMark);
-        LOG.print(" ");
+        digitalWrite(PIN_LED, 1);
+        LOG.print(leftMarker[currentMark]);
+        LOG.print("\t Erro: ");
+        LOG.print(linePosition);
+        nowMarkerTimer = millis() / 1000.0;
+        float markerTimer = nowMarkerTimer - startMarkerTimer;
+        startMarkerTimer = nowMarkerTimer;
+        LOG.print("\t T_E: ");
+        LOG.print(markerTimer);
+        LOG.print("\t T_T: ");
+        LOG.println(laptime);
         // Get current Target Mark
         TargetMark = TRACK_EVENT_NAME[currentMark];
         acceleration = TargetMark.acceleration;
         // Update Robot Setup
-        LOG.println(TargetMark.setup.speed);
+        // LOG.println(TargetMark.setup.speed);
         setupPID(TargetMark.setup);
       }
 
       // Position of the line: (left)-2500 to 2500(right)
       LineReader.readCalibrated(sensorValues, QTR_EMITTERS_ON);
-      linePosition = LineReader.readLine(sensorValues, QTR_EMITTERS_ON, WHITE_LINE) - 2500.0;
+      linePosition = LineReader.readLine(sensorValues, QTR_EMITTERS_ON, WHITE_LINE) - ((NUM_SENSORS - 1) * FIX_MAX_ANALOG_READ / 2);
 
       // Disconsider the next of zero values
       linePosition = linePosition > -STRAIGHT_FIX ? (linePosition < STRAIGHT_FIX ? 0 : linePosition) : linePosition;
@@ -750,7 +843,7 @@ void followLine()
       // LOG.printf("%.4f,", currentPosition);
       // LOG.printf("%.4f", DIF(leftDistance, rightDistance));
 
-      manualTrackMapping();
+      // manualTrackMapping();
 
       // testEncoder(false);
       // testLineSensor();
@@ -758,6 +851,18 @@ void followLine()
       // testPID();
       // testMarkSensors();
       // testMarkProtocol();
+
+      // LOG.print("Line, Gain, LS, RS, TS: \t");
+      // LOG.print(linePosition);
+      // LOG.print("\t ");
+      // LOG.print(directiongain);
+      // LOG.print("\t ");
+      // LOG.print(leftmotorspeed);
+      // LOG.print("\t ");
+      // LOG.print("\t");
+      // LOG.print(righmotorspeed);
+      // LOG.print("\t ");
+      // LOG.println(targetSpeed);
 
       // LOG.print(nowAccTimer - startAccTimer);
       // LOG.print("\t ");

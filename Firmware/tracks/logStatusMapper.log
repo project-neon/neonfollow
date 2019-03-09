@@ -1,0 +1,42 @@
+Calibrating sensors...Sloth FirmwareMaple Mini
+v0.75
+Calibrating sensors...Done.
+Robot Paused
+speed: 50.00	 kp: 2.30	 kd: 0.05	 
+Time Lap: 	0.66s	Track Length: 	 1.10m	Medium Speed: 	 2.00m/s
+Sloth FirmwareMaple Mini
+v0.75
+Calibrating sensors...Done.
+1.67: 0--> 1	 Erro: 1899	 T_E: 0.74	 T_T: 0.74
+Calibrating sensors...Done.
+1.67: 0--> 1	 Erro: 919	 T_E: 0.75	 T_T: 0.75
+3.95: 1--> 9	 Erro: 234	 T_E: 5.85	 T_T: 6.60
+4.41: 9--> 10	 Erro: -623	 T_E: 0.40	 T_T: 7.00
+5.22: 10--> 11	 Erro: 2152	 T_E: 0.39	 T_T: 7.39
+5.62: 11--> 12	 Erro: -3500	 T_E: 1.01	 T_T: 8.39
+Robot Paused
+speed: 50.00	 kp: 2.30	 kd: 0.05	 
+Time Lap: 	8.66s	Track Length: 	 4.85m	Medium Speed: 	 0.67m/s
+Calibrating sensors...Done.
+1.67: 0--> 1	 Erro: 863	 T_E: 0.74	 T_T: 0.74
+4.53: 1--> 9	 Erro: 820	 T_E: 2.88	 T_T: 3.62
+4.54: 9--> 10	 Erro: 929	 T_E: 0.00	 T_T: 3.63
+5.22: 10--> 11	 Erro: 1035	 T_E: 0.36	 T_T: 3.98
+6.20: 11--> 12	 Erro: -140	 T_E: 0.85	 T_T: 4.84
+6.47: 12--> 13	 Erro: -2016	 T_E: 0.18	 T_T: 5.01
+7.90: 13--> 14	 Erro: -771	 T_E: 1.31	 T_T: 6.32
+8.19: 14--> 15	 Erro: -113	 T_E: 0.18	 T_T: 6.51
+9.40: 15--> 16	 Erro: -360	 T_E: 1.08	 T_T: 7.59
+9.68: 16--> 17	 Erro: 1120	 T_E: 0.18	 T_T: 7.77
+11.60: 17--> 18	 Erro: 943	 T_E: 1.66	 T_T: 9.43
+12.22: 18--> 19	 Erro: -1635	 T_E: 0.32	 T_T: 9.75
+14.07: 19--> 22	 Erro: 0	 T_E: 1.68	 T_T: 11.43
+14.08: 22--> 23	 Erro: 0	 T_E: 0.00	 T_T: 11.43
+14.80: 23--> 24	 Erro: 950	 T_E: 0.69	 T_T: 12.12
+16.82: 24--> 25	 Erro: -3500	 T_E: 1.00	 T_T: 13.12
+18.80: 25--> 30	 Erro: 1274	 T_E: 2.15	 T_T: 15.27
+18.80: 30--> 31	 Erro: 1350	 T_E: 0.00	 T_T: 15.28
+20.15: 31--> 34	 Erro: 784	 T_E: 2.51	 T_T: 17.78
+20.15: 34--> 35	 Erro: 992	 T_E: 0.00	 T_T: 17.79
+20.95: 35--> 36	 Erro: 624	 T_E: 1.24	 T_T: 19.02
+Time Lap: 	19.23s	Track Length: 	 17.60m	Medium Speed: 	 1.10m/s
