@@ -77,19 +77,20 @@
 // General Settings
 //
 #define STOP_BY_TIME true
-#define LAP_TIME 360 //in seconds
+#define LAP_TIME 180 //in seconds
 #define STOP_BY_DISTANCE true
-#define FINAL_TARGET_POSITION   21.20  // in meters
+// #define FINAL_TARGET_POSITION   21.20  // in meters
+#define FINAL_TARGET_POSITION 21.2  // in meters
 // #define FINAL_TARGET_POSITION   1.0
 #define ACCELERATION_ENABLED true
 #define ACCELERATION_INTERVAL 0.01
 #define MAPPING_ENABLED true
 #define FIRST_MARK_POSITION 0.5
 
-#define OFFSET_ACCELERATION -0.13     //always -
-#define OFFSET_DESACCELERATION +0.5   //always +
-#define ACCELERATION_UP   3.00
-#define ACCELERATION_DOWN -25.00
+#define OFFSET_ACCELERATION +0.15  //always +
+#define OFFSET_DESACCELERATION -0.45 //always -
+#define ACCELERATION_UP   6.00
+#define ACCELERATION_DOWN -10.00
 
 //
 //Marking Settings
@@ -130,12 +131,15 @@
 //
 
 #define SlowCurve 0
-#define Curve     1
-#define FastCurve 2
-#define Straight  3
-#define Stop      4
+#define SlowSlowCurve 1
+#define Curve     2
+#define FastCurve 3
+#define Straight  4
+#define StraightToSlow      5
+#define StraightToCurve     6
+#define Stop     6
 
-#define TRACK_EVENT_NAME IRON_CUP_2019
+#define TRACK_EVENT_NAME IRON_CUP_2019_SAFE
 #define GAIN_NUMBER PD_IRON
 
 #endif

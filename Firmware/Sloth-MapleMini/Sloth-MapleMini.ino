@@ -24,6 +24,8 @@ float leftDistance;    // left distance by encoder (m)
 float rightDistance;   // right distance by encoder (m)
 bool firstMarkDone = false;
 
+Mark *TRACK = TRACK_EVENT_NAME;
+
 unsigned char pinsLineReader[NUM_SENSORS] = {
     PIN_LR_S1,
     PIN_LR_S2,
@@ -44,47 +46,6 @@ unsigned char pinsLineReader[NUM_SENSORS] = {
     // PIN_LR_S1
     
     };
-
-unsigned int leftMarker[] = {
-0,
-1,
-//2,
-//3,
-//4,
-//5,
-//6,
-//7,
-//8,
-9,
-10,
-11,
-12,
-13,
-14,
-15,
-16,
-17,
-18,
-19,
-//20,
-//21,
-22,
-23,
-24,
-25,
-//26,
-//27,
-//28,
-//29,
-30,
-31,
-//32,
-//33,
-34,
-35,
-36
-
-};
 
 unsigned int sensorValues[NUM_SENSORS];
 
@@ -136,8 +97,11 @@ void checkpointSensorLeftCallback()
 {
   checkpoint_left_counter++;
   // cps_left_led_timer.start();
-  // digitalWrite(PIN_LED, 1);
+  if (!MAPPING_ENABLED) {
+    digitalWrite(PIN_LED, 1);
+  }
 }
+
 
 //Interrupt when Mark Right was change
 void checkpointSensorRightCallback()
@@ -187,7 +151,7 @@ void setupRobot()
   if (MAPPING_ENABLED)
   {
     // Get first target mark - 0
-    TargetMark = TRACK_EVENT_NAME[currentMark];
+    TargetMark = TRACK[currentMark];
     acceleration = TargetMark.acceleration;
     // Update Robot Setup
     setupPID(TargetMark.setup);
@@ -195,7 +159,7 @@ void setupRobot()
   else
   {
     // Get first target mark - 0
-    TargetMark = TRACK_EVENT_NAME[currentMark];
+    TargetMark = TRACK[currentMark];
     acceleration = TargetMark.acceleration;
     // Update Robot Setup
     setupPID(Normal);
@@ -568,6 +532,14 @@ void btcallback()
     // robotstate = true;
     LOG.println("Motors state changed");
     break;
+  case '1':
+    TRACK = IRON_CUP_2019_SAFE;
+    LOG.println("Safe Mode");
+    break;
+  case '2':
+    TRACK = IRON_CUP_2019_HARDCORE;
+    LOG.println("Hardcore");
+    break;
   }
   // if(rcvd != '0'){
     // BT.print(rcvd);
@@ -621,6 +593,23 @@ void setup()
   setupLeftEncoder();
   setupRightEncoder();
   setupPID(Normal);
+    
+  // digitalWrite(PIN_LED, 1);
+  // delay(1000);
+  // for (int i = 0; i < 25; i++)
+  // {
+  //   digitalWrite(PIN_LED, !digitalRead(PIN_LED));
+  //   delay(100);
+  // }
+  // digitalWrite(PIN_LED, 0);
+  // uint32_t time = millis();
+  // do{
+  //   if (BT.available() > 0)
+  //   {
+  //     btcallback();
+  //     delay(100);
+  //   }
+  // }while(millis() - time < 3000);
   setupRobot();
   setupMarkSensors();
 }
@@ -643,11 +632,23 @@ void followLine()
 {
 
   // Timers
+
+  LOG.print("Error,");
+  LOG.print("Speed,");
+  LOG.print("KP,");
+  LOG.print("KD,");
+  LOG.print("Time Lap,");
+  LOG.print("Track Length,");
+  LOG.println("Medium Speed");
+
   startLogTimer = millis();                     // Debug the loop
   startLapTimer = millis() / 1000.0;            // Time of a lap
   startAccTimer = millis() / 1000.0;            // Acceleration interval
   startCps_left_led_timer = millis() / 1000.0;  // Acceleration interval
   startCps_right_led_timer = millis() / 1000.0; // Acceleration interval
+
+  startLapTimer = millis() / 1000.0; // Time of a lap
+  startMarkerTimer = millis() / 1000.0;
 
   while (1)
   {
@@ -670,7 +671,7 @@ void followLine()
       startLapTimer = millis() / 1000.0;    // Time of a lap
       startMarkerTimer = millis() / 1000.0; 
     }
-
+    
     // if(checkpoint_right_counter > 0 && currentPosition >= FINAL_TARGET_POSITION - SAFE_DISTANCE){
     //   nowLapTimer = millis() / 1000.0;
     // }
@@ -713,18 +714,35 @@ void followLine()
       // Print some data for statistics
       laptime = nowLapTimer - startLapTimer;
       float mediumspeed = currentPosition / laptime;
-      LOG.print("Time Lap: \t");
+      // LOG.print("Time Lap: \t");
+      // LOG.print(laptime);
+      // LOG.print("s");
+      // LOG.print("\t");
+      // LOG.print("Track Length: \t ");
+      // LOG.print(currentPosition * CONST_DISTANCE);
+      // LOG.print("m");
+      // LOG.print("\t");
+      // LOG.print("Medium Speed: \t ");
+      // LOG.print(mediumspeed);
+      // LOG.print("m/s");
+      // LOG.println();
+
+      
+      LOG.print("0");
+      LOG.print(",");
+      LOG.print(Normal.speed);
+      LOG.print(",");
+      LOG.print(Normal.kp);
+      LOG.print(",");
+      LOG.print(Normal.kd);
+      LOG.print(",");
       LOG.print(laptime);
-      LOG.print("s");
-      LOG.print("\t");
-      LOG.print("Track Length: \t ");
+      LOG.print(",");
       LOG.print(currentPosition * CONST_DISTANCE);
-      LOG.print("m");
-      LOG.print("\t");
-      LOG.print("Medium Speed: \t ");
+      LOG.print(",");
       LOG.print(mediumspeed);
-      LOG.print("m/s");
       LOG.println();
+
       // Stop the Lap Timer
       startLapTimer = nowLapTimer;
       // Blink the LEDs
@@ -759,12 +777,12 @@ void followLine()
       if (currentPosition >= TargetMark.position && MAPPING_ENABLED)
       {    
         LOG.print(currentPosition);
-        LOG.print(": ");
-        LOG.print(leftMarker[currentMark]);
-        LOG.print("--> ");
+        LOG.print(",");
+        LOG.print(TargetMark.id);
+        LOG.print("-->");
         currentMark++;
         digitalWrite(PIN_LED, 1);
-        LOG.print(leftMarker[currentMark]);
+        LOG.print(TargetMark.id);
         LOG.print("\t Erro: ");
         LOG.print(linePosition);
         nowMarkerTimer = millis() / 1000.0;
@@ -775,7 +793,7 @@ void followLine()
         LOG.print("\t T_T: ");
         LOG.println(laptime);
         // Get current Target Mark
-        TargetMark = TRACK_EVENT_NAME[currentMark];
+        TargetMark = TRACK[currentMark];
         acceleration = TargetMark.acceleration;
         // Update Robot Setup
         // LOG.println(TargetMark.setup.speed);
@@ -843,7 +861,10 @@ void followLine()
       // LOG.printf("%.4f,", currentPosition);
       // LOG.printf("%.4f", DIF(leftDistance, rightDistance));
 
-      // manualTrackMapping();
+      if (!MAPPING_ENABLED) 
+        manualTrackMapping();
+      
+      // LOG.println(linePosition);
 
       // testEncoder(false);
       // testLineSensor();
@@ -851,7 +872,6 @@ void followLine()
       // testPID();
       // testMarkSensors();
       // testMarkProtocol();
-
       // LOG.print("Line, Gain, LS, RS, TS: \t");
       // LOG.print(linePosition);
       // LOG.print("\t ");

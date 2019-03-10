@@ -4,33 +4,40 @@
 #ifndef SETTINGSSPEED_H
 #define SETTINGSSPEED_H
 
-float speedbase = 50;
-float kpdir = 2.3;
-float kidir = 0.0;
-float kddir = 0.050;
+// float speedbase = 100;    //retas
+// float kpdir = 0.50;
+// float kidir = 0.0;
+// float kddir = 6.00;
+
+float speedbase = 40; // PID CONSTANTE
+float kpdir = 2.10;
+float kidir = 0.00;
+float kddir = 0.10;
 
 #define CONSTANTE 100 //This chance the PID constantes to a visible values
 
 Setup Normal     = {speedbase, kpdir, kidir, kddir};
 
 Setup PD_IRON[]{
-    // Target Speed, kp, ki, kd    
-    {50, 2.30, 0.0, 0.05},  // Slow Curve
-
-    {50, 2.30, 0.0, 0.05},  // Slow Curve
-    {60, 1.50, 0.0, 0.075},  // Slow Curve
-    {75, 1.00, 0.0, 0.10},  // Slow Curve
-    // {62, 2.50, 0.0, 0.05},  // Curve
-    // {70, 2.5, 0.0, 0.05}, // FastCurve    
-    // {60, 0.90, 0.0, 0.075}, // Straight                         
+    // Target Speed, kp, ki, kd
+    {40, 2.10, 0.0, 0.10}, // SlowSlow Curve
+    {50, 2.10, 0.0, 0.10}, // Slow Curve
+    {60, 1.50, 0.0, 0.15}, // Curve
+    {70, 1.0, 0.0, 4.00},  // FastCurve
+    // {70, 0.90, 0.0, 0.105}, // Straight
+    {100, 0.75, 0.0, 8.00}, // Straight
+    
+    {40, 0.75, 0.0, 8.00}, // StraightToSlow
+    {60, 0.50, 0.0, 6.00}, // StraightToCurve
 };
 
 Setup PD1[]{
-    // Target Speed, kp, ki, kd    
+    // Target Speed, kp, ki, kd
     {25, 1.0, 0.0, 0.35},  // Slow Curve
+    {25, 1.0, 0.0, 0.35},  // SlowSlow Curve
     {40, 1.0, 0.0, 0.35},  // Curve
-    {70, 1.65, 0.0, 0.35}, // FastCurve    
-    {50, 1.20, 0.0, 0.8}, // Straight                         
+    {70, 1.65, 0.0, 0.35}, // FastCurve
+    {50, 1.20, 0.0, 0.8},  // Straight
 };
 
 //SMILE
